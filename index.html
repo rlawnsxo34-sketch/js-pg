@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소울 포레스트 16종 캐릭터 도감</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            background-color: #F5F9F4;
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #2C3E2D;
+        }
+
+        /* 기관 로고 영역 */
+        .top-brand {
+            text-align: center;
+            padding: 10px 20px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top-brand img {
+            max-height: 50px; /* 로고 크기 조절 */
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-family: 'Jua', sans-serif;
+            font-size: 40px;
+            color: #385E3C;
+            margin: 0 0 10px 0;
+            word-break: keep-all;
+        }
+        .header p {
+            font-size: 18px;
+            color: #6D826F;
+            margin: 0;
+            word-break: keep-all;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+
+        .character-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 2px solid #EAF2EC;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 공식 이미지가 들어갈 영역 */
+        .img-wrapper {
+            background-color: #FDFBF7;
+            border-radius: 16px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid #E0D6C8;
+        }
+
+        .character-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 이미지가 잘리지 않고 온전히 다 보이도록 수정 */
+            padding: 15px; /* 이미지 주변에 적당한 여백이 생기도록 패딩 추가 */
+            box-sizing: border-box;
+        }
+
+        /* 텍스트 영역 */
+        .mbti-badge {
+            background-color: #E58D67;
+            color: white;
+            font-weight: 900;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .char-name {
+            font-family: 'Jua', sans-serif;
+            font-size: 28px;
+            color: #2C3E2D;
+            margin: 0 0 10px 0;
+        }
+        .char-desc {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
+            word-break: keep-all;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        /* 그룹별 테마 색상 지정 */
+        .group-sj { border-color: #A5C2A9; }
+        .group-sj .mbti-badge { background-color: #385E3C; }
+        .group-sp { border-color: #F1C3A9; }
+        .group-sp .mbti-badge { background-color: #E58D67; }
+        .group-nf { border-color: #D8CBE6; }
+        .group-nf .mbti-badge { background-color: #6A4C93; }
+        .group-nt { border-color: #C2D3E6; }
+        .group-nt .mbti-badge { background-color: #2B5B84; }
+
+        /* 다운로드 버튼 */
+        .action-area {
+            width: 100%;
+            margin-top: 20px;
+            border-top: 1px dashed #eee;
+            padding-top: 15px;
+        }
+        
+        .download-btn {
+            background-color: #F5F9F4;
+            color: #385E3C;
+            border: 2px solid #385E3C;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            background-color: #385E3C;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 기관 로고 영역 -->
+    <div class="top-brand">
+        <img src="50186.png" alt="한국산림복지진흥원 국립장성숲체원 로고">
+    </div>
+
+    <div class="header">
+        <h1>🌲 숲속 디지털 신분증 발급소</h1>
+        <p>나의 결과에 맞는 캐릭터를 찾아 '카드 다운로드'를 눌러주세요!</p>
+    </div>
+
+    <div class="card-grid">
+        
+        <!-- ================= SJ: 숲의 수호자들 ================= -->
+        <div class="character-card group-sj" id="card-istj">
+            <div class="img-wrapper">
+                <img class="character-img" src="istj_tree.png" alt="편백나무 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ISTJ+Image'">
+            </div>
+            <div class="mbti-badge">ISTJ</div>
+            <h2 class="char-name">듬직한 편백나무</h2>
+            <p class="char-desc">비바람이 몰아쳐도 흔들림 없이 천년의 지혜를 품고 자리를 지키는 숲의 버팀목.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-istj', 'ISTJ_편백나무')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-sj" id="card-isfj">
+            <div class="img-wrapper">
+                <img class="character-img" src="isfj_moss.png" alt="흙과 이끼 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ISFJ+Image'">
+            </div>
+            <div class="mbti-badge">ISFJ</div>
+            <h2 class="char-name">따뜻한 흙과 이끼</h2>
+            <p class="char-desc">눈에 띄지 않는 곳에서 나무와 꽃들에게 영양분을 내어주는 헌신적인 조력자.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-isfj', 'ISFJ_흙과이끼')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-sj" id="card-estj">
+            <div class="img-wrapper">
+                <img class="character-img" src="estj_woodpecker.png" alt="딱따구리 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ESTJ+Image'">
+            </div>
+            <div class="mbti-badge">ESTJ</div>
+            <h2 class="char-name">보안관 딱따구리</h2>
+            <p class="char-desc">숲의 탐방로를 관리하고 썩은 나무를 정확히 골라내는 철저한 원칙주의자.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-estj', 'ESTJ_딱따구리')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-sj" id="card-esfj">
+            <div class="img-wrapper">
+                <img class="character-img" src="esfj_deer.png" alt="사슴 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ESFJ+Image'">
+            </div>
+            <div class="mbti-badge">ESFJ</div>
+            <h2 class="char-name">안내자 사슴</h2>
+            <p class="char-desc">길 잃은 여행자에게 다가가 가장 먼저 길을 안내해 주는 다정한 숲속의 인싸.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-esfj', 'ESFJ_사슴')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <!-- ================= SP: 자유 영혼들 ================= -->
+        <div class="character-card group-sp" id="card-istp">
+            <div class="img-wrapper">
+                <img class="character-img" src="istp_beaver.png" alt="비버 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ISTP+Image'">
+            </div>
+            <div class="mbti-badge">ISTP</div>
+            <h2 class="char-name">재주꾼 비버</h2>
+            <p class="char-desc">혼자 조용히 나뭇가지를 모아 튼튼한 댐과 산채를 뚝딱 지어내는 숲속의 발명가.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-istp', 'ISTP_비버')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-sp" id="card-isfp">
+            <div class="img-wrapper">
+                <img class="character-img" src="isfp_rabbit.png" alt="산토끼 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ISFP+Image'">
+            </div>
+            <div class="mbti-badge">ISFP</div>
+            <h2 class="char-name">여유로운 산토끼</h2>
+            <p class="char-desc">따뜻한 햇볕 아래 눕는 것을 좋아하며, 숲의 평화로움을 온몸으로 즐기는 낭만파.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-isfp', 'ISFP_산토끼')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-sp" id="card-estp">
+            <div class="img-wrapper">
+                <img class="character-img" src="estp_goat.png" alt="산양 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ESTP+Image'">
+            </div>
+            <div class="mbti-badge">ESTP</div>
+            <h2 class="char-name">에너자이저 산양</h2>
+            <p class="char-desc">한시도 가만히 있지 못하고 험한 바위산도 훌쩍훌쩍 뛰어넘는 타고난 모험가.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-estp', 'ESTP_산양')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-sp" id="card-esfp">
+            <div class="img-wrapper">
+                <img class="character-img" src="esfp_otter.png" alt="수달 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ESFP+Image'">
+            </div>
+            <div class="mbti-badge">ESFP</div>
+            <h2 class="char-name">엔터테이너 수달</h2>
+            <p class="char-desc">맑은 물가에서 수영하며 숲속 동물들의 웃음을 책임지는 긍정 에너지 뿜뿜 메이커.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-esfp', 'ESFP_수달')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <!-- ================= NF: 숲의 요정들 ================= -->
+        <div class="character-card group-nf" id="card-infj">
+            <div class="img-wrapper">
+                <img class="character-img" src="infj_firefly.png" alt="반딧불이 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=INFJ+Image'">
+            </div>
+            <div class="mbti-badge">INFJ</div>
+            <h2 class="char-name">신비로운 반딧불이</h2>
+            <p class="char-desc">캄캄한 숲속에서 상처받은 동물들의 마음을 말없이 위로해 주는 깊은 내면의 소유자.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-infj', 'INFJ_반딧불이')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-nf" id="card-infp">
+            <div class="img-wrapper">
+                <img class="character-img" src="infp_bird.png" alt="종달새 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=INFP+Image'">
+            </div>
+            <div class="mbti-badge">INFP</div>
+            <h2 class="char-name">음유시인 종달새</h2>
+            <p class="char-desc">나뭇잎에 시를 적고 숲의 아름다움을 노래하며 자신만의 세계를 날아다니는 감성주의자.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-infp', 'INFP_종달새')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-nf" id="card-enfj">
+            <div class="img-wrapper">
+                <img class="character-img" src="enfj_bear.png" alt="아빠곰 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ENFJ+Image'">
+            </div>
+            <div class="mbti-badge">ENFJ</div>
+            <h2 class="char-name">다정한 아빠 곰</h2>
+            <p class="char-desc">거대한 덩치와 달리 마음이 따뜻하여, 숲속 동물들을 하나로 모으고 이끄는 부드러운 카리스마.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-enfj', 'ENFJ_아빠곰')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-nf" id="card-enfp">
+            <div class="img-wrapper">
+                <img class="character-img" src="enfp_goblin.png" alt="도깨비 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ENFP+Image'">
+            </div>
+            <div class="mbti-badge">ENFP</div>
+            <h2 class="char-name">장난꾸러기 도깨비</h2>
+            <p class="char-desc">상상력이 풍부하고 매일매일 새로운 장난을 치며 숲에 활력을 불어넣는 아이디어 뱅크.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-enfp', 'ENFP_도깨비')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <!-- ================= NT: 숲의 지혜자들 ================= -->
+        <div class="character-card group-nt" id="card-intj">
+            <div class="img-wrapper">
+                <img class="character-img" src="intj_owl.png" alt="올빼미 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=INTJ+Image'">
+            </div>
+            <div class="mbti-badge">INTJ</div>
+            <h2 class="char-name">은둔형 올빼미</h2>
+            <p class="char-desc">숲의 가장 높은 나무에 앉아 생태계의 흐름을 꿰뚫어 보는 고독하고 날카로운 전략가.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-intj', 'INTJ_올빼미')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-nt" id="card-intp">
+            <div class="img-wrapper">
+                <img class="character-img" src="intp_mushroom.png" alt="독버섯 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=INTP+Image'">
+            </div>
+            <div class="mbti-badge">INTP</div>
+            <h2 class="char-name">괴짜 독버섯</h2>
+            <p class="char-desc">남들이 관심 없는 숲의 구석에서 우주와 자연의 섭리를 연구하는 호기심 대마왕.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-intp', 'INTP_독버섯')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-nt" id="card-entj">
+            <div class="img-wrapper">
+                <img class="character-img" src="entj_tiger.png" alt="호랑이 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ENTJ+Image'">
+            </div>
+            <div class="mbti-badge">ENTJ</div>
+            <h2 class="char-name">위풍당당 호랑이</h2>
+            <p class="char-desc">방장산을 호령하며 숲의 질서를 수호하고 미래의 숲을 설계하는 타고난 리더.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-entj', 'ENTJ_호랑이')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+        <div class="character-card group-nt" id="card-entp">
+            <div class="img-wrapper">
+                <img class="character-img" src="entp_squirrel.png" alt="청설모 이미지" onerror="this.src='https://via.placeholder.com/400x400?text=ENTP+Image'">
+            </div>
+            <div class="mbti-badge">ENTP</div>
+            <h2 class="char-name">개척자 청설모</h2>
+            <p class="char-desc">남들이 가지 않은 나무 꼭대기와 덩굴 사이를 과감하게 탐험하는 숲속의 이단아.</p>
+            <div class="action-area" data-html2canvas-ignore>
+                <button class="download-btn" onclick="downloadCard('card-entp', 'ENTP_청설모')"><i class="fa-solid fa-download"></i> 카드 다운로드</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 카드 캡처 및 다운로드 스크립트 -->
+    <script>
+        function downloadCard(cardId, fileName) {
+            const cardElement = document.getElementById(cardId);
+            
+            // html2canvas 옵션 설정: 고해상도, 흰색 배경, 다운로드 버튼 영역 제외
+            html2canvas(cardElement, {
+                scale: 2, 
+                backgroundColor: "#ffffff",
+                borderRadius: "20px",
+                useCORS: true // 이미지가 외부 서버에 있을 경우 보안(CORS) 오류 방지
+            }).then(canvas => {
+                const image = canvas.toDataURL("image/png");
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = `${fileName}_신분증.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        }
+    </script>
+</body>
+</html>
